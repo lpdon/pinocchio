@@ -249,7 +249,9 @@ ADD_SUBDIRECTORY(bindings)
 ADD_SUBDIRECTORY(utils)
 
 # --- UNIT TESTS ---------------------------------------------------------------
+IF(BUILD_TESTING)
 ADD_SUBDIRECTORY(unittest)
+ENDIF(BUILD_TESTING)
 
 # --- CHECK EXAMPLES -----------------------------------------------------------
 ADD_SUBDIRECTORY(examples)
@@ -286,3 +288,5 @@ ENDFOREACH(cflags ${CFLAGS_DEPENDENCIES})
 
 # Install catkin package.xml
 INSTALL(FILES package.xml DESTINATION share/${PROJECT_NAME})
+
+TARGET_INCLUDE_DIRECTORIES(${PROJECT_NAME} INTERFACE ${${PROJECT_NAME}_BINARY_DIR}/include)
